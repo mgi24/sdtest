@@ -12,11 +12,11 @@
  *
  *    D2       NC
  *    D3       NC
- *    CMD ---  38 ------------------------|
- *    VDD ---  3.3V-----10K ohm resistor--| (connect all pin to pullup resistor)
- *    CLK ---  39 ------------------------|
- *    VSS ---  GND                        |
- *    D0  ---  40 ------------------------|
+ *    CMD ---  38 ---10K ohm resistor---|
+ *    VDD ---  3.3V---------------------| (connect all pin to pullup resistor)
+ *    CLK ---  39 ---10K ohm resistor---|       
+ *    VSS ---  GND                      |
+ *    D0  ---  40 ---10K ohm resistor---|
  *    D1  
  *    
  *    same with sdcard, just add 1 more GND
@@ -31,7 +31,7 @@
 void speedtestio(fs::FS &fs, const char * path){
     File file;
     static uint8_t buf[512];
-    file = fs.open(path, FILE_WRITE);
+    file = fs.open(path, FILE_WRITE);//like SD_MMC open
     if(!file){
         Serial.println("Failed to open file for writing");
         return;
@@ -113,6 +113,5 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
+//nothing on loop, only run once every restart!
 }
